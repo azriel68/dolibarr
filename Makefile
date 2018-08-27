@@ -32,6 +32,7 @@ pull:
 
 ## Build images from docker-compose config
 build: pull
+	mkdir ~/dolibarr_documents
 	docker-compose build
 
 ## Start all the containers
@@ -116,4 +117,3 @@ init-db:init-documents
 
 init-documents:
 	mkdir -p ~/dolibarr_documents/users/temps
-	chown -R 33:33 ~/dolibarr_documents/*
