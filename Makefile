@@ -117,3 +117,4 @@ init-db:init-documents
 
 init-documents:
 	mkdir -p ~/dolibarr_documents/users/temps
+	touch ~/dolibarr_documents/install.lock
