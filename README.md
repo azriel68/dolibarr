@@ -15,7 +15,7 @@ Prérequis:
 
 ```sh
 cd ~/PhpstormProjects
-git clone git@gitlab.sfam.ovh:sfk/dolibarr.git dolibarr --branch=8.0
+git clone git@gitlab.sfam.ovh:sfk/docker/dolibarr.git dolibarr --branch=8.0
 cd dolibarr
 # setup the .env file
 cp .env.dist .env
