@@ -49,7 +49,7 @@ $listoflastname = array("Joe","Marc","Steve","Laurent","Nico","Isabelle","Doroth
  * Parametre
  */
 
-define(GEN_NUMBER_SOCIETE, 10);
+define(GEN_NUMBER_SOCIETE, 1000000);
 
 
 $ret=$user->fetch('','admin');
