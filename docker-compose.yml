@@ -1,0 +1,42 @@
+version: '2.1'
+
+services:
+    php:
+        image: registry.sfam.ovh/php:7.1
+        env_file:
+            - .env
+        volumes:
+            - .:/var/www/html:${FS_MOUNT-consistent}
+            - ${HOMEDIR}:/var/www/home
+            - ${HOMEDIR}/dolibarr_documents:/var/www/html/documents
+        networks:
+          - default
+          - redis
+        labels:
+          log_active: 1
+          project_name: "dolibarr"
+          process_name: "php"
+    nginx:
+        build: docker/nginx
+        links:
+            - php
+        volumes_from:
+          - php
+        networks:
+          - default
+        environment:
+           VIRTUAL_HOST: ${VHOST}
+           LETSENCRYPT_HOST: ${SSL_HOST}
+           LETSENCRYPT_EMAIL: ${SSL_EMAIL}
+        labels:
+          log_active: 1
+          project_name: "dolibarr"
+          process_name: "nginx"
+
+networks:
+    redis:
+        external: true
+    default:
+        external:
+            name: ${PROXY_NETWORK}
+
