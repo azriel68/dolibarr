@@ -135,6 +135,10 @@ if($resql === false ) {
     exit;
 }
 
+$db->query("SET autocommit=0; 
+    SET unique_checks=0; 
+    SET foreign_key_checks=0;");
+
 if ($resql)
 {
     while ($row = $db->fetch_row($resql))
@@ -142,9 +146,10 @@ if ($resql)
         $fk_soc = $row[0];
         
         $nb_contrat=mt_rand(1,10);
+
         for($i=0;$i<$nb_contrat;$i++) {
-         
-            $object=new Contrat($db);
+
+            $object = new Contrat($db);
             $object->socid = $fk_soc;
             $object->date = $dates[mt_rand(1, count($dates)-1)];
             $object->commercial_signature_id=1;

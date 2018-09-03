@@ -1,8 +1,3 @@
-Dolibarr SFAM
-============
-
-Dolibarr de la société SFAM
-
 Travailler sur le projet
 ========================
 
@@ -15,13 +10,12 @@ Prérequis:
 
 ```sh
 cd ~/PhpstormProjects
-git clone git@gitlab.sfam.ovh:sfk/docker/dolibarr.git dolibarr --branch=8.0
+git clone git@repo dolibarr --branch=8.0
 cd dolibarr
 # setup the .env file
 cp .env.dist .env
 sed -i 's|\/home\/login|'"${HOME}"'|' .env
 # for mac, setup FS_MOUNT=delegated
-wget -O .git/hooks/pre-commit https://conf.sfam.ovh/workstation/default/home/user/git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 make build
 make up
 make init-db
