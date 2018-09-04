@@ -26,7 +26,7 @@
  */
 
 
-namespace PHPSQLParser;
+//namespace PHPSQLParser;
 require_once dirname(__FILE__) . '/PHP-SQL-Parser/vendor/autoload.php';
 
 require_once DOL_DOCUMENT_ROOT .'/core/db/DoliDB.class.php';
@@ -258,6 +258,11 @@ class DoliDBElk extends \DoliDB
 
         $query = trim($query);
 
+
+        if (preg_match("/^COMMIT/i",$query) && ! preg_match("/^ROLLBACK/i",$query))
+
+            $parser = new \PHPSQLParser\PHPSQLParser($query, true);
+        print_r($parser);exit;
 	    if (! in_array($query,array('BEGIN','COMMIT','ROLLBACK'))) dol_syslog('sql='.$query, LOG_DEBUG);
 
         if (! $this->database_name)
