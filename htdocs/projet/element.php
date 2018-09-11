@@ -290,7 +290,7 @@ $listofreferent=array(
 	'class'=>'SupplierProposal',
 	'table'=>'supplier_proposal',
 	'datefieldname'=>'date',
-    'urlnew'=>DOL_URL_ROOT.'/supplier_proposal/card.php?action=create&projectid='.$id.'&socid='.$socid,
+	'urlnew'=>DOL_URL_ROOT.'/supplier_proposal/card.php?action=create&projectid='.$id,	// No socid parameter here, the socid is often the customer and we create a supplier object
     'lang'=>'supplier_proposal',
     'buttonnew'=>'AddSupplierProposal',
     'testnew'=>$user->rights->supplier_proposal->creer,
@@ -550,8 +550,6 @@ print '<td align="right" width="100">'.$langs->trans("AmountHT").'</td>';
 print '<td align="right" width="100">'.$langs->trans("AmountTTC").'</td>';
 print '</tr>';
 
-$var = false;
-
 foreach ($listofreferent as $key => $value)
 {
 	$name=$langs->trans($value['name']);
@@ -743,9 +741,9 @@ foreach ($listofreferent as $key => $value)
 		if (empty($conf->global->PROJECT_CREATE_ON_OVERVIEW_DISABLED) && $urlnew)
 		{
 			$addform.='<div class="inline-block valignmiddle">';
-			if ($testnew) $addform.='<a class="buttonxxx" href="'.$urlnew.'">'.($buttonnew?$langs->trans($buttonnew):$langs->trans("Create")).'</a>';
+			if ($testnew) $addform.='<a class="buttonxxx" href="'.$urlnew.'">'.($buttonnew?$langs->trans($buttonnew):$langs->trans("Create")).' <span class="fa fa-plus-circle valignmiddle"></span></a>';
 			elseif (empty($conf->global->MAIN_BUTTON_HIDE_UNAUTHORIZED)) {
-				$addform.='<a class="buttonxxx buttonRefused" disabled="disabled" href="#">'.($buttonnew?$langs->trans($buttonnew):$langs->trans("Create")).'</a>';
+				$addform.='<a class="buttonxxx buttonRefused" disabled="disabled" href="#">'.($buttonnew?$langs->trans($buttonnew):$langs->trans("Create")).' <span class="fa fa-plus-circle valignmiddle"></span></a>';
 			}
             $addform.='<div>';
 		}
