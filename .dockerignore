@@ -1,0 +1,10 @@
+/.git
+/.github
+/.gitignore
+/.gitlab-ci.yml
+/.travis.yml
+/build
+/dev
+/doc
+/docker
+/test
