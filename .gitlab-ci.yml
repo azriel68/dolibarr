@@ -4,7 +4,7 @@ before_script:
 stages:
   - build
 
-build_data_prod:
+build_data:
   stage: build
   only:
     - develop
