@@ -1,1 +1,0 @@
-../../elk/htdocs/core/db/elk.class.php

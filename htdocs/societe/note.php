@@ -38,14 +38,17 @@ $id = GETPOST('id')?GETPOST('id','int'):GETPOST('socid','int');
 if ($user->societe_id) $id=$user->societe_id;
 $result = restrictedArea($user, 'societe', $id, '&societe');
 
-$object = new Societe($db);
-if ($id > 0) $object->fetch($id);
-
-$permissionnote=$user->rights->societe->creer;	// Used by the include of actions_setnotes.inc.php
-
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
 $hookmanager->initHooks(array('thirdpartynote','globalcard'));
 
+$object = new Societe($db);
+
+$parameters=array('id'=>$id);
+$reshook=$hookmanager->executeHooks('beforeFetch',$parameters,$object,$action);    // Note that $action and $object may have been modified by some hooks
+
+if ($id > 0) $object->fetch($id);
+
+$permissionnote=$user->rights->societe->creer;	// Used by the include of actions_setnotes.inc.php
 
 /*
  * Actions

@@ -39,7 +39,13 @@ $id = GETPOST('id','int');
 if ($user->societe_id) $id=$user->societe_id;
 $result = restrictedArea($user, 'contact', $id, 'socpeople&societe');
 
+$hookmanager->initHooks(array('contactnote','globalcard'));
+
 $object = new Contact($db);
+
+$parameters=array('id'=>$id);
+$reshook=$hookmanager->executeHooks('beforeFetch',$parameters,$object,$action);    // Note that $action and $object may have been modified by some hooks
+
 if ($id > 0) $object->fetch($id);
 
 $permissionnote=$user->rights->societe->creer;	// Used by the include of actions_setnotes.inc.php

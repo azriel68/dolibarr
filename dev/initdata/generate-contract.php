@@ -145,7 +145,7 @@ if ($resql)
     {
         $fk_soc = $row[0];
         
-        $nb_contrat=mt_rand(1,10);
+        $nb_contrat=mt_rand(1,3);
 
         for($i=0;$i<$nb_contrat;$i++) {
 
@@ -158,7 +158,7 @@ if ($resql)
             $result=$object->create($user);
             if ($result >= 0)
             {
-                $nbp = mt_rand(1, 5);
+                $nbp = 1;
                 $xnbp = 0;
                 while ($xnbp < $nbp)
                 {
@@ -179,7 +179,7 @@ if ($resql)
                     $xnbp++;
                 }
                 
-                $result=$object->validate($user);
+                $result=$object->validate($user, 'CTSF'.$object->id);
                 if ($result)
                 {
                     print " OK with ref ".$object->ref."\n";;

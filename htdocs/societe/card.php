@@ -71,6 +71,9 @@ $extralabels=$extrafields->fetch_name_optionals_label($object->table_element);
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
 $hookmanager->initHooks(array('thirdpartycard','globalcard'));
 
+$parameters=array('id'=>$socid, 'objcanvas'=>$objcanvas);
+$reshook=$hookmanager->executeHooks('beforeFetch',$parameters,$object,$action);    // Note that $action and $object may have been modified by some hooks
+
 if ($socid > 0) $object->fetch($socid);
 
 if (! ($object->id > 0) && $action == 'view')
@@ -2126,7 +2129,6 @@ else
         $linkback = '<a href="'.DOL_URL_ROOT.'/societe/list.php?restore_lastsearch_values=1">'.$langs->trans("BackToList").'</a>';
 
         dol_banner_tab($object, 'socid', $linkback, ($user->societe_id?0:1), 'rowid', 'nom');
-
 
         print '<div class="fichecenter">';
         print '<div class="fichehalfleft">';

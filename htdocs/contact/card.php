@@ -464,10 +464,7 @@ else
     if ($id > 0)
     {
         // Si edition contact deja existant
-        $object = new Contact($db);
         $res=$object->fetch($id, $user);
-        if ($res < 0) { dol_print_error($db,$object->error); exit; }
-        $res=$object->fetch_optionals();
         if ($res < 0) { dol_print_error($db,$object->error); exit; }
 
         // Show tabs

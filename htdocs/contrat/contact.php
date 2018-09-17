@@ -51,6 +51,9 @@ $object = new Contrat($db);
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
 $hookmanager->initHooks(array('contractcard','globalcard'));
 
+$parameters=array('id'=>$id);
+$reshook=$hookmanager->executeHooks('beforeFetch',$parameters,$object,$action);    // Note that $action and $object may have been modified by some hooks
+
 
 /*
  * Actions

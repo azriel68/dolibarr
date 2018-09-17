@@ -70,6 +70,9 @@ $hookmanager->initHooks(array('contractcard','globalcard'));
 $object = new Contrat($db);
 $extrafields = new ExtraFields($db);
 
+$parameters = array('socid' => $socid);
+$reshook = $hookmanager->executeHooks('beforeFetch', $parameters, $object, $action);
+
 // Load object
 if ($id > 0 || ! empty($ref) && $action!='add') {
 	$ret = $object->fetch($id, $ref);
