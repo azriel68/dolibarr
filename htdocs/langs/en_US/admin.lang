@@ -908,7 +908,6 @@ DictionarySource=Origin of proposals/orders
 DictionaryAccountancyCategory=Personalized groups for reports
 DictionaryAccountancysystem=Models for chart of accounts
 DictionaryAccountancyJournal=Accounting journals
-DictionaryEMailTemplates=Emails templates
 DictionaryUnits=Units
 DictionaryProspectStatus=Prospection status
 DictionaryHolidayTypes=Types of leaves
@@ -1796,6 +1795,7 @@ COMPANY_AQUARIUM_REMOVE_SPECIAL=Remove special characters
 COMPANY_AQUARIUM_CLEAN_REGEX=Regex filter to clean value (COMPANY_AQUARIUM_CLEAN_REGEX)
 GDPRContact=Privacy Policies or GDPR contact
 GDPRContactDesc=If you store data about European companies/citizen, you can store here the contact who is responsible for the General Data Protection Regulation
+YouCanDeleteFileOnServerWith=You can delete this file on server with Command Line:<br>%s
 ##### Resource ####
 ResourceSetup=Configuration du module Resource 
 UseSearchToSelectResource=Use a search form to choose a resource (rather than a drop-down list).
