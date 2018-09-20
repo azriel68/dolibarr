@@ -7,7 +7,7 @@ services:
     - .env
     volumes:
     - .:/var/www/html:${FS_MOUNT-consistent}
-    - ${HOMEDIR}:/var/www/home
+    - ${HOME}:/var/www/home
     - ${DOCUMENTS}:/var/www/html/documents
     networks:
     - default

@@ -88,7 +88,7 @@ if (preg_match('/api\/index\.php\/explorer/', $_SERVER["PHP_SELF"]) && ! empty($
 // index.php/xxx                                called by any REST client to run API
 
 
-preg_match('/index\.php\/([^\/]+)(.*)$/', $_SERVER["PHP_SELF"], $reg);
+preg_match('/index\.php\/([^\/]+)(.*)$/', $_SERVER["DOCUMENT_URI"], $reg);
 // .../index.php/categories?sortfield=t.rowid&sortorder=ASC
 
 
@@ -112,8 +112,6 @@ $api->r->addAuthenticationClass('DolibarrApiAccess','');
 
 // Define accepted mime types
 UploadFormat::$allowedMimeTypes = array('image/jpeg', 'image/png', 'text/plain', 'application/octet-stream');
-
-
 
 // Call Explorer file for all APIs definitions
 if (! empty($reg[1]) && $reg[1] == 'explorer' && ($reg[2] == '/swagger.json' || $reg[2] == '/swagger.json/root' || $reg[2] == '/resources.json' || $reg[2] == '/resources.json/root'))
