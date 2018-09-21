@@ -24,22 +24,22 @@ push_data:
     - develop
     - master
   script:
-    - docker image push registry.sfam.ovh/sfk/apps/dolibarr/nginx:$CI_COMMIT_REF_NAME
-    - docker image push registry.sfam.ovh/sfk/apps/dolibarr/php:$CI_COMMIT_REF_NAME
+    - docker image push registry.sfam.ovh/sfk/apps/$CI_PROJECT_NAME/nginx:$CI_COMMIT_REF_NAME
+    - docker image push registry.sfam.ovh/sfk/apps/$CI_PROJECT_NAME/php:$CI_COMMIT_REF_NAME
 
 deploy_sandbox:
   stage: deploy
   only:
     - develop
   script:
-    - ssh -T debian@c01d01.sfam.ovh "PROJECT=dolibarr IMAGE_TAG_PHP_CI=$CI_COMMIT_REF_NAME IMAGE_TAG_NGINX_CI=$CI_COMMIT_REF_NAME"
+    - ssh -T debian@c01d01.sfam.ovh "PROJECT=$CI_PROJECT_NAME IMAGE_TAG_PHP_CI=$CI_COMMIT_REF_NAME IMAGE_TAG_NGINX_CI=$CI_COMMIT_REF_NAME"
 
 deploy_prod:
   stage: deploy
   only:
     - master
   script:
-    - ssh -T debian@c01d01.sfam.ovh "PROJECT=dolibarr IMAGE_TAG_PHP_CI=$CI_COMMIT_REF_NAME IMAGE_TAG_NGINX_CI=$CI_COMMIT_REF_NAME"
+    - ssh -T debian@c02d01.sfam.ovh "PROJECT=$CI_PROJECT_NAME IMAGE_TAG_PHP_CI=$CI_COMMIT_REF_NAME IMAGE_TAG_NGINX_CI=$CI_COMMIT_REF_NAME"
 
 
 
