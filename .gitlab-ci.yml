@@ -33,4 +33,4 @@ deploy_prod:
   only:
     - master
   script:
-    - ssh -T debian@c01d01.sfam.ovh "PROJECT=achats IMAGE_TAG_PHP_CI=$CI_COMMIT_REF_NAME IMAGE_TAG_NGINX_CI=$CI_COMMIT_REF_SLUG"
+    - ssh -T debian@c02d01.sfam.ovh "PROJECT=achats IMAGE_TAG_PHP_CI=$CI_COMMIT_REF_NAME IMAGE_TAG_NGINX_CI=$CI_COMMIT_REF_SLUG"
