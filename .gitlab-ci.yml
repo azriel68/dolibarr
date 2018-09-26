@@ -1,17 +1,21 @@
 before_script:
-  - echo -e "BRANCH/TAG => $CI_COMMIT_REF_NAME\nSLUG => $CI_COMMIT_REF_SLUG\nTITLE => $CI_COMMIT_TITLE\nSHA => $CI_COMMIT_SHA"
+- echo -e "BRANCH/TAG => $CI_COMMIT_REF_NAME\nSLUG => $CI_COMMIT_REF_SLUG\nTITLE => $CI_COMMIT_TITLE\nSHA => $CI_COMMIT_SHA"
 
 stages:
-  - build
+- build
+- push
 
 build_data:
   stage: build
-  only:
-    - develop
-    - master
   script:
-    - docker image build --pull . -f .nginx.Dockerfile -t registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/nginx:$CI_COMMIT_REF_NAME
-    - docker image build --pull . -f .php.Dockerfile -t registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/php:$CI_COMMIT_REF_NAME
-    # Push images in the registry
-    - docker image push registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/php:$CI_COMMIT_REF_NAME
-    - docker image push registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/nginx:$CI_COMMIT_REF_NAME
+  - docker image build --pull . -f .nginx.Dockerfile -t registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/nginx:$CI_COMMIT_REF_SLUG
+  - docker image build --pull . -f .php.Dockerfile -t registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/php:$CI_COMMIT_REF_SLUG
+
+push_data:
+  stage: push
+  only:
+  - develop
+  - master
+  script:
+  - docker image push registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/php:$CI_COMMIT_REF_SLUG
+  - docker image push registry.sfam.ovh/sfk/docker/$CI_PROJECT_NAME/nginx:$CI_COMMIT_REF_SLUG
