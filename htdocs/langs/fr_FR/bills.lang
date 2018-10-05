@@ -99,6 +99,7 @@ ClassifyCanceled=Classer 'Abandonnée'
 ClassifyClosed=Classer 'Fermée'
 ClassifyUnBilled=Classer 'Non facturée'
 CreateBill=Créer Facture
+CreateSupplierBill=Créer Facture Fournisseur
 CreateCreditNote=Créer facture avoir
 AddBill=Créer une facture ou un avoir
 AddToDraftInvoices=Ajouter à facture brouillon
