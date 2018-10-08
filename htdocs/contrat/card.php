@@ -2133,11 +2133,14 @@ else
 					else print '<div class="inline-block divButAction"><a class="butActionRefused" href="#" title="'.$langs->trans("NotEnoughPermissions").'">'.$langs->trans("CreateBill").'</a></div>';
 				}
 
-                if (! empty($conf->fournisseur->enabled) && $object->statut > 0 && $object->thirdparty->fournisseur>0)
-                {
+                if (! empty($conf->fournisseur->enabled) && $object->statut > 0 && $object->thirdparty->fournisseur>0) {
                     $langs->load("bills");
-                    if ($user->rights->fournisseur->facture->creer) print '<div class="inline-block divButAction"><a class="butAction" href="'.DOL_URL_ROOT.'/fourn/facture/card.php?action=create&amp;origin='.$object->element.'&amp;originid='.$object->id.'&amp;socid='.$object->thirdparty->id.'">'.$langs->trans("CreateSupplierBill").'</a></div>';
-                    else print '<div class="inline-block divButAction"><a class="butActionRefused" href="#" title="'.$langs->trans("NotEnoughPermissions").'">'.$langs->trans("CreateBill").'</a></div>';
+                    if ($user->rights->fournisseur->facture->creer) {
+                        print '<div class="inline-block divButAction"><a class="butAction" href="'.DOL_URL_ROOT.'/fourn/facture/card.php?action=create&amp;origin='.$object->element.'&amp;originid='.$object->id.'&amp;socid='.$object->thirdparty->id.'">'.$langs->trans("CreateSupplierBill").'</a></div>';
+					}
+                    else {
+                        print '<div class="inline-block divButAction"><a class="butActionRefused" href="#" title="'.$langs->trans("NotEnoughPermissions").'">'.$langs->trans("CreateBill").'</a></div>';
+					}
                 }
 
 				if (! empty($conf->commande->enabled) && $object->statut > 0 && $object->nbofservicesclosed < $nbofservices && $object->thirdparty->client>0 )
