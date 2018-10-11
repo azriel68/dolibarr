@@ -1136,7 +1136,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 
 		if (! empty($conf->global->PDF_SHOW_PROJECT))
 		{
-			$object->fetch_projet();
+			$object->fetch_project();
 			if (! empty($object->project->ref))
 			{
 				$posy+=4;

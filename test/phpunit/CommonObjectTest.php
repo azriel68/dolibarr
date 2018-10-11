@@ -154,7 +154,7 @@ class CommonObjectTest extends PHPUnit_Framework_TestCase
 
         $localobject=new Commande($this->savdb);
         $localobject->fetch(1);
-        $result=$localobject->fetch_projet();
+        $result=$localobject->fetch_project();
 
         print __METHOD__." result=".$result."\n";
         $this->assertLessThanOrEqual($result,0);

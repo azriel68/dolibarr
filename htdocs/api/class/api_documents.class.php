@@ -461,7 +461,7 @@ class Documents extends DolibarrApi
 				// Fetching the tasks project is required because its out_dir might be a sub-directory of the project
 				if($task_result > 0)
 				{
-					$project_result = $object->fetch_projet();
+					$project_result = $object->fetch_project();
 
 					if($project_result >= 0)
 					{

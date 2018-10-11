@@ -113,7 +113,7 @@ abstract class CommonObject
 
 	/**
 	 * @var Project The related project
-	 * @see fetch_projet()
+	 * @see fetch_project()
 	 */
 	public $project;
 	/**
@@ -142,7 +142,7 @@ abstract class CommonObject
 	 * @var Societe A related thirdparty
 	 * @see fetch_thirdparty()
 	 */
-	public $thirdparty;
+	protected $thirdparty=null;
 
 	/**
 	 * @var User A related user
@@ -366,6 +366,20 @@ abstract class CommonObject
 
 	// No constructor as it is an abstract class
 
+	public function __get($name) {
+
+		$name = preg_replace('/^lz_/i','',$name);  /* just force lazyloading on public properties, for example thirdparty */
+
+		if(method_exists($this,'fetch_'.$name)) {
+			call_user_func(array($this, 'fetch_'.$name));
+		}
+
+		return $this->{$name};
+	}
+
+	public function __set($name, $value) {
+
+	}
 	/**
 	 * Check an object id/ref exists
 	 * If you don't need/want to instantiate object and just need to know if object exists, use this method instead of fetch
@@ -1152,7 +1166,7 @@ abstract class CommonObject
 	function fetch_contact($contactid=null)
 	{
 		if (empty($contactid)) $contactid=$this->contactid;
-
+		exit('la'.$this->contactid.get_class($this));
 		if (empty($contactid)) return 0;
 
 		require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
@@ -1277,7 +1291,8 @@ abstract class CommonObject
 	 *
 	 *		@return		int			<0 if KO, >=0 if OK
 	 */
-	function fetch_projet()
+	function fetch_projet() { return $this->fetch_project(); } /* retro compatibility */
+	function fetch_project()
 	{
 		include_once DOL_DOCUMENT_ROOT.'/projet/class/project.class.php';
 

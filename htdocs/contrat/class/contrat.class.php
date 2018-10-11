@@ -46,6 +46,7 @@ class Contrat extends CommonObject
 	public $table_element_line='contratdet';
 	public $fk_element='fk_contrat';
     public $picto='contract';
+
     /**
      * 0=No test on entity, 1=Test with field entity, 2=Test with link by societe
      * @var int

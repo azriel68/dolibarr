@@ -38,8 +38,11 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
 require_once DOL_DOCUMENT_ROOT.'/product/class/productbatch.class.php';
 require_once DOL_DOCUMENT_ROOT.'/product/stock/class/entrepot.class.php';
 
+require_once DOL_DOCUMENT_ROOT.'/includes/autoload.php';
 /**
  * Class to manage products or services
+ * @Entity
+ * @Table=(name="llx_product")
  */
 class Product extends CommonObject
 {
@@ -56,6 +59,12 @@ class Product extends CommonObject
 
 	public $regeximgext='\.gif|\.jpg|\.jpeg|\.png|\.bmp|\.xpm|\.xbm'; // See also into images.lib.php
 
+	/**
+	 * @Id
+	 * @Column(type="integer", name="rowid")
+	 */
+	public $id;
+
 	/*
 	 * @deprecated
 	 * @see label
@@ -64,12 +73,14 @@ class Product extends CommonObject
 	/**
 	 * Product label
 	 * @var string
+	 * @Column(type="string")
 	 */
 	public $label;
 
 	/**
      	* Product descripion
      	* @var string
+	 	* @Column(type="text")
      	*/
 	public $description;
 

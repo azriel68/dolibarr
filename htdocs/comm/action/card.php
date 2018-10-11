@@ -937,7 +937,7 @@ if ($id > 0)
 	}
 
 	$result2=$object->fetch_thirdparty();
-	$result2=$object->fetch_projet();
+	$result2=$object->fetch_project();
 	$result3=$object->fetch_contact();
 	$result4=$object->fetch_userassigned();
 	$result5=$object->fetch_optionals();

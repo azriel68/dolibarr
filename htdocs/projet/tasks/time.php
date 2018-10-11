@@ -148,7 +148,7 @@ if ($action == 'addtimespent' && $user->rights->projet->lire)
 		{
 			$object->fetch(GETPOST('taskid','int'));
 		}
-		$object->fetch_projet();
+		$object->fetch_project();
 
 		if (empty($object->project->statut))
 		{

@@ -34,6 +34,7 @@ class PassThrough
      * @param bool   $isPublic      cache control, is it public or private
      *
      * @throws RestException
+     * @internal param string $pragma
      *
      */
     public static function file($filename, $forceDownload = false, $expires = 0, $isPublic = true)

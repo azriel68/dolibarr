@@ -32,7 +32,8 @@
         "mobiledetect/mobiledetectlib": "2.8.17",
         "phpoffice/phpexcel": "1.8.1",
         "restler/framework": "3.0.0-RC6",
-        "tecnickcom/tcpdf": "6.2.12"
+        "tecnickcom/tcpdf": "6.2.12",
+        "doctrine/orm": "*"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^0",
