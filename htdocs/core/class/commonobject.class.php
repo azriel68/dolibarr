@@ -115,7 +115,7 @@ abstract class CommonObject
 	 * @var Project The related project
 	 * @see fetch_project()
 	 */
-	public $project;
+	protected $project;
 	/**
 	 * @var int The related project ID
 	 * @see setProject(), project
@@ -125,13 +125,13 @@ abstract class CommonObject
 	 * @deprecated
 	 * @see project
 	 */
-	public $projet;
+	protected $projet;
 
 	/**
 	 * @var Contact a related contact
 	 * @see fetch_contact()
 	 */
-	public $contact;
+	protected $contact;
 	/**
 	 * @var int The related contact ID
 	 * @see fetch_contact()
@@ -368,9 +368,9 @@ abstract class CommonObject
 
 	public function __get($name) {
 
-		$name = preg_replace('/^lz_/i','',$name);  /* just force lazyloading on public properties, for example thirdparty */
+		$name = preg_replace('/^lz_/i','',$name);  /* just force lazyloading on empty public properties */
 
-		if(method_exists($this,'fetch_'.$name)) {
+		if(empty($this->{$name}) && method_exists($this,'fetch_'.$name)) {
 			call_user_func(array($this, 'fetch_'.$name));
 		}
 
@@ -378,7 +378,7 @@ abstract class CommonObject
 	}
 
 	public function __set($name, $value) {
-
+		$this->{$name} = $value;
 	}
 	/**
 	 * Check an object id/ref exists
@@ -1166,7 +1166,7 @@ abstract class CommonObject
 	function fetch_contact($contactid=null)
 	{
 		if (empty($contactid)) $contactid=$this->contactid;
-		exit('la'.$this->contactid.get_class($this));
+
 		if (empty($contactid)) return 0;
 
 		require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';

@@ -1,0 +1,8 @@
+<?php llxHeader(); ?>
+        <?php if (isset($name)) : ?>
+            <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
+            <?= $url; ?>
+        <?php else: ?>
+            <p>Try <a href="http://www.slimframework.com">SlimFramework</a></p>
+        <?php endif; ?>
+<?php llxFooter(); ?>
